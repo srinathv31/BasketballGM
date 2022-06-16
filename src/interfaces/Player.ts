@@ -1,6 +1,7 @@
+import { PlayerAttributes } from "./Attributes";
 import { StatObject } from "./Stats";
 
-export interface PlayerObject extends Player, PlayerStats {
+export interface PlayerObject extends Player, PlayerStats, PlayerAttributes {
     draftPos: number,
     status: "Active" | "Retired" | "Injured",
     teamNumber: number,
