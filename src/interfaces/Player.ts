@@ -2,6 +2,7 @@ import { PlayerAttributes } from "./Attributes";
 import { StatObject } from "./Stats";
 
 export interface PlayerObject extends Player, PlayerStats, PlayerAttributes, PlayerTraits {
+    id: number,
     draftPos: number,
     status: "Active" | "Retired" | "Injured",
     teamNumber: number,
@@ -12,7 +13,7 @@ export interface PlayerObject extends Player, PlayerStats, PlayerAttributes, Pla
 interface Player {
     name: string,
     position: Postion[],
-    height: string,
+    height: number,
     weight: number,
     age: number,
     college: string,
@@ -34,12 +35,16 @@ interface PlayerStats {
     TO: StatObject
 }
 
-type Postion = "PG" | "SG" | "SF" | "PF" | "C";
+export type Postion = "PG" | "SG" | "SF" | "PF" | "C";
 
 interface PlayerTraits {
-    devTrait: "STAR" | "FAST" | "NORMAL" | "SLOW" | "DECLINE",
-    morale: "Ecstatic" | "Happy" | "Content" | "Unhappy" | "Estranged"
-    loyalty: "HIGH" | "MED" | "LOW"
-    demand: "HIGH" | "MED" | "LOW"
-    ambition: "HIGH" | "MED" | "LOW"
+    devTrait: DevTrait,
+    morale: Morale
+    loyalty: LevelsList
+    demand: LevelsList
+    ambition: LevelsList
 }
+
+export type DevTrait = "STAR" | "FAST" | "NORMAL" | "SLOW" | "DECLINE";
+export type Morale = "Ecstatic" | "Happy" | "Content" | "Unhappy" | "Estranged";
+export type LevelsList = "HIGH" | "MED" | "LOW";

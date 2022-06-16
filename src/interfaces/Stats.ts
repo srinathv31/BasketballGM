@@ -2,7 +2,7 @@ export interface StatObject {
     total: number,
     postseasonTotal: number,
     averages: StatAvg,
-    [gameNumber: number]: number
+    [gameNumber: number]: number | "DNP"
 }
 
 interface StatAvg {
