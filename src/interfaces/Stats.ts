@@ -1,7 +1,8 @@
 export interface StatObject {
     total: number,
     postseasonTotal: number,
-    averages: StatAvg
+    averages: StatAvg,
+    [gameNumber: number]: number
 }
 
 interface StatAvg {

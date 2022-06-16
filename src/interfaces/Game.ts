@@ -5,4 +5,5 @@ export interface Game {
     away: Team,
     teamScore: number,
     oppScore: number,
+    gameNumber: number
 }
