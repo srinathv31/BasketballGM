@@ -1,7 +1,7 @@
 import { PlayerAttributes } from "./Attributes";
 import { StatObject } from "./Stats";
 
-export interface PlayerObject extends Player, PlayerStats, PlayerAttributes {
+export interface PlayerObject extends Player, PlayerStats, PlayerAttributes, PlayerTraits {
     draftPos: number,
     status: "Active" | "Retired" | "Injured",
     teamNumber: number,
@@ -35,3 +35,11 @@ interface PlayerStats {
 }
 
 type Postion = "PG" | "SG" | "SF" | "PF" | "C";
+
+interface PlayerTraits {
+    devTrait: "STAR" | "FAST" | "NORMAL" | "SLOW" | "DECLINE",
+    morale: "Ecstatic" | "Happy" | "Content" | "Unhappy" | "Estranged"
+    loyalty: "HIGH" | "MED" | "LOW"
+    demand: "HIGH" | "MED" | "LOW"
+    ambition: "HIGH" | "MED" | "LOW"
+}

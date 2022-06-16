@@ -1,4 +1,5 @@
 export interface PlayerAttributes {
+    overall: number,
     physical: PlayerPhysicalRatings,
     mental: PlayerMentalRatings,
     offense: OffensivePlayerSkillRatings,
