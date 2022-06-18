@@ -3,6 +3,7 @@ import { randomNumberGenerator } from "../randomNumberGenerator";
 import firstNameList from "../../assets/firstNameList.json";
 import lastNameList from "../../assets/lastNamesList.json";
 import collegeNamesList from "../../assets/collegeNamesList.json";
+import { generateOverall } from "./overallGenerator";
 
 export function generateDraftClass() {
     const draftClassList: PlayerObject[] = [];
@@ -24,7 +25,7 @@ function generateNewPlayer(listLength: number): PlayerObject {
         teams: { 2022: "" },
         salary: { 2022: 0 },
         name: generateName(),
-        position: generatePosition(),
+        position: ["PG"],
         height: generateHeight(),
         weight: generateWeight(),
         age: randomNumberGenerator(24, 19),
@@ -86,8 +87,9 @@ function generatePlayerRatings() {
     const mentalRatings = generateMentalRatings();
     const offensiveRatings = generateOffensiveRatings();
     const defensiveRatings = generateDefensiveRatings();
-    const overall = Math.floor((physicalRatings.overall + offensiveRatings.overall + defensiveRatings.overall)/3);
-    return { overall: overall, physicalRatings: physicalRatings.ratings, mentalRatings: mentalRatings, offensiveRatings: offensiveRatings.ratings, defensiveRatings: defensiveRatings.ratings };
+    const categoryOveralls = { overall: 70, physical: physicalRatings.ratings, mental: mentalRatings.ratings, offense: offensiveRatings.ratings, defense: defensiveRatings.ratings };
+    const overall = generateOverall("PG", categoryOveralls);
+    return { overall: overall, physicalRatings: physicalRatings.ratings, mentalRatings: mentalRatings.ratings, offensiveRatings: offensiveRatings.ratings, defensiveRatings: defensiveRatings.ratings };
 }
 
 function generatePhysicalRatings()  {
@@ -98,7 +100,8 @@ function generatePhysicalRatings()  {
 
 function generateMentalRatings() {
     const mentals = { shotIQ: randomNumberGenerator(99, 20), playmakingIQ: randomNumberGenerator(99, 20), discipline: randomNumberGenerator(99, 15), defensiveIQ: randomNumberGenerator(99, 20) };
-    return mentals;
+    const total = Object.values(mentals).reduce((a,b) => a+b);
+    return { ratings: mentals, overall: Math.floor(total/Object.keys(mentals).length) };
 }
 
 function generateOffensiveRatings() {

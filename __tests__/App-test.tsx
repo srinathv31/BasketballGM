@@ -17,6 +17,10 @@ it("renders correctly", () => {
 
 it("Creates a new Draft Class", () => {
     const draftClass = generateDraftClass();
-    console.log(draftClass);
+    draftClass.forEach(player => {
+        if (player.overall > 69) {
+            console.log(player);
+        }
+    });
     draftVisualizer(draftClass);
 });

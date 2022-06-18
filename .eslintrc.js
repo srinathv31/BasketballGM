@@ -22,6 +22,9 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "rules": {
+            "@typescript-eslint/no-non-null-assertion": "warn"
+        },
         "indent": "off",
         "@typescript-eslint/indent": ["error"],
         "linebreak-style": [

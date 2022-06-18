@@ -10,14 +10,16 @@ interface PlayerPhysicalRatings {
     speed: number,
     strength: number,
     vertical: number,
-    injuryProne: number
+    injuryProne: number,
+    categoryWeight?: number
 }
 
 interface PlayerMentalRatings {
     shotIQ: number,
     playmakingIQ: number,
     discipline: number,
-    defensiveIQ: number
+    defensiveIQ: number,
+    categoryWeight?: number
 }
 
 interface OffensivePlayerSkillRatings {
@@ -30,7 +32,8 @@ interface OffensivePlayerSkillRatings {
     postFade: number,
     drawFoul: number,
     ballHandle: number,
-    passing: number
+    passing: number,
+    categoryWeight?: number
 }
 
 interface DefensivePlayerSkillRatings {
@@ -39,5 +42,6 @@ interface DefensivePlayerSkillRatings {
     block: number,
     steal: number,
     offensiveRebound: number,
-    defensiveRebound: number
+    defensiveRebound: number,
+    categoryWeight?: number
 }
