@@ -8,6 +8,8 @@ import { generateHeight } from "./playerGenerators/vitals/heightGenerator";
 import { generateWeight } from "./playerGenerators/vitals/weightGenerator";
 import { generateReboundRating } from "./playerGenerators/ratings/defense/reboundGenerator";
 import generateBlockRating from "./playerGenerators/ratings/defense/blockGenerator";
+import generateSpeedRating from "./playerGenerators/ratings/physical/speedGenerator";
+import generateStrengthRating from "./playerGenerators/ratings/physical/strengthGenerator";
 
 export function generateDraftClass() {
     const draftClassList: PlayerObject[] = [];
@@ -22,7 +24,7 @@ function generateNewPlayer(listLength: number): PlayerObject {
     const playerPosition: Postion[] = ["PG"]
     const playerHeight = generateHeight(playerPosition[0]);
     const playerWeight = generateWeight(playerHeight);
-    const playerRatings = generatePlayerRatings(playerHeight);
+    const playerRatings = generatePlayerRatings(playerHeight, playerPosition[0]);
     const playerTraits = generatePlayerTraits();
     const newPlayer: PlayerObject = {
         id: (listLength) + 1,
@@ -89,8 +91,8 @@ function generateCollege() {
     return `${collegeNamesList[randomNumberGenerator(collegeNamesList.length)]}`;
 }
 
-function generatePlayerRatings(height: number) {
-    const physicalRatings = generatePhysicalRatings();
+function generatePlayerRatings(height: number, position: Postion) {
+    const physicalRatings = generatePhysicalRatings(position);
     const mentalRatings = generateMentalRatings();
     const offensiveRatings = generateOffensiveRatings();
     const defensiveRatings = generateDefensiveRatings(height);
@@ -99,11 +101,11 @@ function generatePlayerRatings(height: number) {
     return { overall: overall, physicalRatings: physicalRatings, mentalRatings: mentalRatings, offensiveRatings: offensiveRatings, defensiveRatings: defensiveRatings };
 }
 
-function generatePhysicalRatings()  {
+function generatePhysicalRatings(position: Postion)  {
     const physicals = { 
-        speed: randomNumberGenerator(99, 50),
-        strength: randomNumberGenerator(99, 25),
-        vertical: randomNumberGenerator(99, 20),
+        speed: generateSpeedRating(position),
+        strength: generateStrengthRating(position),
+        vertical: randomNumberGenerator(99, 35),
         injuryProne: weightedRandomNumberGenerator(99, 0, 1.6) };
     return physicals;
 }

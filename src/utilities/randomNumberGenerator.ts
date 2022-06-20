@@ -2,7 +2,7 @@ export function randomNumberGenerator(max: number, min?: number) {
     if (min) {
         return Math.floor(Math.random() * (max+1 - min) + min);
     } else {
-        return Math.floor(Math.random() * max+1);
+        return Math.floor(Math.random() * max);
     }
 }
 
