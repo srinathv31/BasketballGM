@@ -6,6 +6,8 @@ import collegeNamesList from "../../assets/collegeNamesList.json";
 import { generateOverall } from "./overallGenerator";
 import { generateHeight } from "./vitals/heightGenerator";
 import { generateWeight } from "./vitals/weightGenerator";
+import { generateReboundRating } from "./ratings/defense/reboundGenerator";
+import generateBlockRating from "./ratings/defense/blockGenerator";
 
 export function generateDraftClass() {
     const draftClassList: PlayerObject[] = [];
@@ -20,7 +22,7 @@ function generateNewPlayer(listLength: number): PlayerObject {
     const playerPosition: Postion[] = ["PG"]
     const playerHeight = generateHeight(playerPosition[0]);
     const playerWeight = generateWeight(playerHeight);
-    const playerRatings = generatePlayerRatings();
+    const playerRatings = generatePlayerRatings(playerHeight);
     const playerTraits = generatePlayerTraits();
     const newPlayer: PlayerObject = {
         id: (listLength) + 1,
@@ -87,26 +89,24 @@ function generateCollege() {
     return `${collegeNamesList[randomNumberGenerator(collegeNamesList.length)]}`;
 }
 
-function generatePlayerRatings() {
+function generatePlayerRatings(height: number) {
     const physicalRatings = generatePhysicalRatings();
     const mentalRatings = generateMentalRatings();
     const offensiveRatings = generateOffensiveRatings();
-    const defensiveRatings = generateDefensiveRatings();
-    const categoryOveralls = { overall: 70, physical: physicalRatings.ratings, mental: mentalRatings.ratings, offense: offensiveRatings.ratings, defense: defensiveRatings.ratings };
+    const defensiveRatings = generateDefensiveRatings(height);
+    const categoryOveralls = { overall: 70, physical: physicalRatings, mental: mentalRatings, offense: offensiveRatings, defense: defensiveRatings };
     const overall = generateOverall("PG", categoryOveralls);
-    return { overall: overall, physicalRatings: physicalRatings.ratings, mentalRatings: mentalRatings.ratings, offensiveRatings: offensiveRatings.ratings, defensiveRatings: defensiveRatings.ratings };
+    return { overall: overall, physicalRatings: physicalRatings, mentalRatings: mentalRatings, offensiveRatings: offensiveRatings, defensiveRatings: defensiveRatings };
 }
 
 function generatePhysicalRatings()  {
     const physicals = { speed: randomNumberGenerator(99, 50), strength: randomNumberGenerator(99, 25), vertical: randomNumberGenerator(99, 20), injuryProne: randomNumberGenerator(99, 15) };
-    const total = Object.values(physicals).reduce((a,b) => a+b);
-    return { ratings: physicals, overall: Math.floor(total/Object.keys(physicals).length) };
+    return physicals;
 }
 
 function generateMentalRatings() {
     const mentals = { shotIQ: randomNumberGenerator(99, 20), playmakingIQ: randomNumberGenerator(99, 20), discipline: randomNumberGenerator(99, 15), defensiveIQ: randomNumberGenerator(99, 20) };
-    const total = Object.values(mentals).reduce((a,b) => a+b);
-    return { ratings: mentals, overall: Math.floor(total/Object.keys(mentals).length) };
+    return mentals;
 }
 
 function generateOffensiveRatings() {
@@ -122,21 +122,19 @@ function generateOffensiveRatings() {
         ballHandle: randomNumberGenerator(99, 20),
         passing: randomNumberGenerator(99, 20)
     };
-    const total = Object.values(offense).reduce((a,b) => a+b);
-    return { ratings: offense, overall: total/Object.keys(offense).length };
+    return offense;
 }
 
-function generateDefensiveRatings() {
+function generateDefensiveRatings(height: number) {
     const defense = {
-        interiorDefense: randomNumberGenerator(99, 20),
-        perimeterDefense: randomNumberGenerator(99, 20),
-        block: randomNumberGenerator(99, 20),
-        steal: randomNumberGenerator(99, 20),
-        offensiveRebound: randomNumberGenerator(99, 20),
-        defensiveRebound: randomNumberGenerator(99, 20)
+        interiorDefense: height < 77 ? randomNumberGenerator(75, 35) : randomNumberGenerator(100, 50),
+        perimeterDefense: height > 81 ? randomNumberGenerator(80, 35) : randomNumberGenerator(100, 50),
+        block: generateBlockRating(height),
+        steal: randomNumberGenerator(100, 35),
+        offensiveRebound: generateReboundRating(height),
+        defensiveRebound: generateReboundRating(height)
     };
-    const total = Object.values(defense).reduce((a,b) => a+b);
-    return { ratings: defense, overall: total/Object.keys(defense).length };
+    return defense;
 }
 
 function generatePlayerTraits() {

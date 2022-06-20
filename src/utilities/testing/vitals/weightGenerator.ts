@@ -14,6 +14,7 @@ export function generateWeight(height: number){
             selectedKey = +heightClass;
             return false;
         }
+        return true;
     });
     return randomNumberGenerator(playerWeightConstraints[selectedKey].max, playerWeightConstraints[selectedKey].min);
 }
