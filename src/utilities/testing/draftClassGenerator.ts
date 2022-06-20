@@ -4,6 +4,8 @@ import firstNameList from "../../assets/firstNameList.json";
 import lastNameList from "../../assets/lastNamesList.json";
 import collegeNamesList from "../../assets/collegeNamesList.json";
 import { generateOverall } from "./overallGenerator";
+import { generateHeight } from "./vitals/heightGenerator";
+import { generateWeight } from "./vitals/weightGenerator";
 
 export function generateDraftClass() {
     const draftClassList: PlayerObject[] = [];
@@ -15,6 +17,9 @@ export function generateDraftClass() {
 }
 
 function generateNewPlayer(listLength: number): PlayerObject {
+    const playerPosition: Postion[] = ["PG"]
+    const playerHeight = generateHeight(playerPosition[0]);
+    const playerWeight = generateWeight(playerHeight);
     const playerRatings = generatePlayerRatings();
     const playerTraits = generatePlayerTraits();
     const newPlayer: PlayerObject = {
@@ -25,9 +30,9 @@ function generateNewPlayer(listLength: number): PlayerObject {
         teams: { 2022: "" },
         salary: { 2022: 0 },
         name: generateName(),
-        position: ["PG"],
-        height: generateHeight(),
-        weight: generateWeight(),
+        position: playerPosition,
+        height: playerHeight,
+        weight: playerWeight,
         age: randomNumberGenerator(24, 19),
         college: generateCollege(),
         GP: { total: 0, postseasonTotal: 0, averages: { postseason: 0 } },
@@ -70,13 +75,13 @@ function generatePosition() {
     return positions;
 }
 
-function generateHeight() {
-    return randomNumberGenerator(86, 60);
-}
+// function generateHeight() {
+//     return randomNumberGenerator(86, 60);
+// }
 
-function generateWeight() {
-    return randomNumberGenerator(350, 170);
-}
+// function generateWeight() {
+//     return randomNumberGenerator(350, 170);
+// }
 
 function generateCollege() {
     return `${collegeNamesList[randomNumberGenerator(collegeNamesList.length)]}`;
