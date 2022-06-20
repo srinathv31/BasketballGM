@@ -1,4 +1,4 @@
-import { randomNumberGenerator } from "../../randomNumberGenerator";
+import { randomNumberGenerator } from "../../../randomNumberGenerator";
 
 export function generateWeight(height: number){
     const playerWeightConstraints: Record<number, { min: number, max: number }> = {

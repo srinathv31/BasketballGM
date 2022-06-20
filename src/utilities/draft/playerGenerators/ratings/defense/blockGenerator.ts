@@ -1,4 +1,4 @@
-import { randomNumberGenerator } from "../../../randomNumberGenerator";
+import { randomNumberGenerator } from "../../../../randomNumberGenerator";
 
 export default function generateBlockRating(height: number) {
     const playerBlockConstraints: Record<number, { min: number, max: number }> = {

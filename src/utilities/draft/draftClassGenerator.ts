@@ -3,11 +3,11 @@ import { randomNumberGenerator, weightedRandomNumberGenerator } from "../randomN
 import firstNameList from "../../assets/firstNameList.json";
 import lastNameList from "../../assets/lastNamesList.json";
 import collegeNamesList from "../../assets/collegeNamesList.json";
-import { generateOverall } from "./overallGenerator";
-import { generateHeight } from "./vitals/heightGenerator";
-import { generateWeight } from "./vitals/weightGenerator";
-import { generateReboundRating } from "./ratings/defense/reboundGenerator";
-import generateBlockRating from "./ratings/defense/blockGenerator";
+import { generateOverall } from "../player/overallGenerator";
+import { generateHeight } from "./playerGenerators/vitals/heightGenerator";
+import { generateWeight } from "./playerGenerators/vitals/weightGenerator";
+import { generateReboundRating } from "./playerGenerators/ratings/defense/reboundGenerator";
+import generateBlockRating from "./playerGenerators/ratings/defense/blockGenerator";
 
 export function generateDraftClass() {
     const draftClassList: PlayerObject[] = [];

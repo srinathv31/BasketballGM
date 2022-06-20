@@ -8,7 +8,7 @@ import App from "../src/App";
 
 // Note: test renderer must be required after react-native.
 import renderer from "react-test-renderer";
-import { generateDraftClass } from "../src/utilities/testing/draftClassGenerator";
+import { generateDraftClass } from "../src/utilities/draft/draftClassGenerator";
 import { draftVisualizer } from "../src/utilities/testing/draftVisualizer";
 
 it("renders correctly", () => {

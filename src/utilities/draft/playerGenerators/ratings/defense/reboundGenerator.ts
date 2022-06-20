@@ -1,4 +1,4 @@
-import { randomNumberGenerator } from "../../../randomNumberGenerator";
+import { randomNumberGenerator } from "../../../../randomNumberGenerator";
 
 export function generateReboundRating(height: number) {
     const playerReboundConstraints: Record<number, { min: number, max: number }> = {

@@ -1,5 +1,5 @@
-import { Postion } from "../../../interfaces/Player";
-import { randomNumberGenerator } from "../../randomNumberGenerator";
+import { Postion } from "../../../../interfaces/Player";
+import { randomNumberGenerator } from "../../../randomNumberGenerator";
 
 export function generateHeight(position: Postion) {
     const playerHeightConstraints: Record<Postion, { min: number, max: number }> = {
