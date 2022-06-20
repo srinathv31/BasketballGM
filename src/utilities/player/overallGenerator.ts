@@ -23,5 +23,6 @@ export function generateOverall(position: Postion, categoryOveralls: PlayerAttri
         const categoryWeightedOverall = categoryRatings.map((rating, index) => rating[1]*categoryRatingsWeights[index][1]).reduce((a,b) => a+b)*categoryWeight;
         totalWeightedOverall += categoryWeightedOverall;
     });
-    return Math.round(totalWeightedOverall);
+    const calculatedTotalOverall = Math.round(totalWeightedOverall);
+    return calculatedTotalOverall === 99 ? calculatedTotalOverall : calculatedTotalOverall+3;
 }

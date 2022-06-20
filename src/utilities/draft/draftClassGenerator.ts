@@ -10,6 +10,14 @@ import { generateReboundRating } from "./playerGenerators/ratings/defense/reboun
 import generateBlockRating from "./playerGenerators/ratings/defense/blockGenerator";
 import generateSpeedRating from "./playerGenerators/ratings/physical/speedGenerator";
 import generateStrengthRating from "./playerGenerators/ratings/physical/strengthGenerator";
+import generateMidRange from "./playerGenerators/ratings/offense/midRangeGenerator";
+import generateThreePoint from "./playerGenerators/ratings/offense/threePointGenerator";
+import generateFreeThrow from "./playerGenerators/ratings/offense/freeThrowGenerator";
+import generateLayup from "./playerGenerators/ratings/offense/layupGenerator";
+import generateDunk from "./playerGenerators/ratings/offense/dunkGenerator";
+import generatePostFade from "./playerGenerators/ratings/offense/postFadeGenerator";
+import generateBallHandle from "./playerGenerators/ratings/offense/ballHandleGenerator";
+import generatePassing from "./playerGenerators/ratings/offense/passingGenerator";
 
 export function generateDraftClass() {
     const draftClassList: PlayerObject[] = [];
@@ -79,14 +87,6 @@ function generatePosition() {
     return positions;
 }
 
-// function generateHeight() {
-//     return randomNumberGenerator(86, 60);
-// }
-
-// function generateWeight() {
-//     return randomNumberGenerator(350, 170);
-// }
-
 function generateCollege() {
     return `${collegeNamesList[randomNumberGenerator(collegeNamesList.length)]}`;
 }
@@ -94,7 +94,7 @@ function generateCollege() {
 function generatePlayerRatings(height: number, position: Postion) {
     const physicalRatings = generatePhysicalRatings(position);
     const mentalRatings = generateMentalRatings();
-    const offensiveRatings = generateOffensiveRatings();
+    const offensiveRatings = generateOffensiveRatings(position, height);
     const defensiveRatings = generateDefensiveRatings(height);
     const categoryOveralls = { overall: 70, physical: physicalRatings, mental: mentalRatings, offense: offensiveRatings, defense: defensiveRatings };
     const overall = generateOverall("PG", categoryOveralls);
@@ -120,18 +120,18 @@ function generateMentalRatings() {
     return mentals;
 }
 
-function generateOffensiveRatings() {
+function generateOffensiveRatings(position: Postion, height: number) {
     const offense = { 
-        close: randomNumberGenerator(99, 20),
-        midRange: randomNumberGenerator(99, 20),
-        threePoint: randomNumberGenerator(99, 20),
-        freeThrow: randomNumberGenerator(99, 20),
-        layup: randomNumberGenerator(99, 20),
-        dunk: randomNumberGenerator(99, 20),
-        postFade: randomNumberGenerator(99, 20),
+        close: weightedRandomNumberGenerator(99, 35, 0.7),
+        midRange: generateMidRange(position),
+        threePoint: generateThreePoint(position),
+        freeThrow: generateFreeThrow(position),
+        layup: generateLayup(position),
+        dunk: generateDunk(position),
+        postFade: generatePostFade(height),
         drawFoul: randomNumberGenerator(99, 20),
-        ballHandle: randomNumberGenerator(99, 20),
-        passing: randomNumberGenerator(99, 20)
+        ballHandle: generateBallHandle(position),
+        passing: generatePassing(position)
     };
     return offense;
 }
