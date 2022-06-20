@@ -111,7 +111,12 @@ function generatePhysicalRatings(position: Postion)  {
 }
 
 function generateMentalRatings() {
-    const mentals = { shotIQ: randomNumberGenerator(99, 20), playmakingIQ: randomNumberGenerator(99, 20), discipline: randomNumberGenerator(99, 15), defensiveIQ: randomNumberGenerator(99, 20) };
+    const mentals = { 
+        shotIQ: weightedRandomNumberGenerator(99, 20, 0.5), 
+        playmakingIQ: weightedRandomNumberGenerator(99, 20, 0.5), 
+        discipline: weightedRandomNumberGenerator(99, 1, 0.6), 
+        defensiveIQ: weightedRandomNumberGenerator(99, 20, 0.5) 
+    };
     return mentals;
 }
 
