@@ -149,11 +149,11 @@ function generateDefensiveRatings(height: number) {
 }
 
 function generatePlayerTraits() {
-    const devTraits: DevTrait[] = ["STAR", "FAST", "NORMAL", "SLOW"];
+    const devTraits: DevTrait[] = ["STAR", "FAST", "NORMAL"];
     const moraleList: Morale[] = ["Ecstatic", "Happy", "Content", "Unhappy"];
     const levelsList: LevelsList[] = ["HIGH", "MED", "LOW"];
     return { 
-        devTrait: devTraits[randomNumberGenerator(devTraits.length)],
+        devTrait: devTraits[weightedRandomNumberGenerator(devTraits.length-1, 0, 0.4)],
         morale: moraleList[randomNumberGenerator(moraleList.length)],
         loyalty: levelsList[randomNumberGenerator(levelsList.length)],
         demand: levelsList[randomNumberGenerator(levelsList.length)],
