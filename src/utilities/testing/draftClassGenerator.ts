@@ -1,5 +1,5 @@
 import { DevTrait, LevelsList, Morale, PlayerObject, Postion } from "../../interfaces/Player";
-import { randomNumberGenerator } from "../randomNumberGenerator";
+import { randomNumberGenerator, weightedRandomNumberGenerator } from "../randomNumberGenerator";
 import firstNameList from "../../assets/firstNameList.json";
 import lastNameList from "../../assets/lastNamesList.json";
 import collegeNamesList from "../../assets/collegeNamesList.json";
@@ -100,7 +100,11 @@ function generatePlayerRatings(height: number) {
 }
 
 function generatePhysicalRatings()  {
-    const physicals = { speed: randomNumberGenerator(99, 50), strength: randomNumberGenerator(99, 25), vertical: randomNumberGenerator(99, 20), injuryProne: randomNumberGenerator(99, 15) };
+    const physicals = { 
+        speed: randomNumberGenerator(99, 50),
+        strength: randomNumberGenerator(99, 25),
+        vertical: randomNumberGenerator(99, 20),
+        injuryProne: weightedRandomNumberGenerator(99, 0, 1.6) };
     return physicals;
 }
 
@@ -127,10 +131,10 @@ function generateOffensiveRatings() {
 
 function generateDefensiveRatings(height: number) {
     const defense = {
-        interiorDefense: height < 77 ? randomNumberGenerator(75, 35) : randomNumberGenerator(100, 50),
-        perimeterDefense: height > 81 ? randomNumberGenerator(80, 35) : randomNumberGenerator(100, 50),
+        interiorDefense: height < 77 ? randomNumberGenerator(75, 35) : randomNumberGenerator(99, 50),
+        perimeterDefense: height > 81 ? randomNumberGenerator(80, 35) : randomNumberGenerator(99, 50),
         block: generateBlockRating(height),
-        steal: randomNumberGenerator(100, 35),
+        steal: randomNumberGenerator(99, 35),
         offensiveRebound: generateReboundRating(height),
         defensiveRebound: generateReboundRating(height)
     };

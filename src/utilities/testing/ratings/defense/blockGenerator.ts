@@ -6,7 +6,7 @@ export default function generateBlockRating(height: number) {
         80: { min: 50, max: 81 },
         82: { min: 50, max: 91 },
         84: { min: 60, max: 96 },
-        91: { min: 65, max: 100 }
+        91: { min: 65, max: 99 }
     }
     let selectedKey = 77;
     Object.keys(playerBlockConstraints).every(heightClass => {

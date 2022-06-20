@@ -9,7 +9,7 @@ export function generateHeight(position: Postion) {
         "PF": { min: 80, max: 83 },
         "C": { min: 82, max: 90 }
     }
-    const heightAnamolyChance = randomNumberGenerator(101, 0);
+    const heightAnamolyChance = randomNumberGenerator(100, 0);
     if (heightAnamolyChance > 98) {
         if (position === "PG" && heightAnamolyChance === 99) {
             return 68;
