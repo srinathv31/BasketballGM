@@ -6,7 +6,7 @@ export default function generateDunk(position: Postion) {
         case "PG":
             return weightedRandomNumberGenerator(97, 35, 1);
         case "SG":
-            return weightedRandomNumberGenerator(99, 50, 0.8);
+            return weightedRandomNumberGenerator(99, 60, 0.8);
         case "SF":
             return weightedRandomNumberGenerator(99, 50, 0.8);
         case "PF":

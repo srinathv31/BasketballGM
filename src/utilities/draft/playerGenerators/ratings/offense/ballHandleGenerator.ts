@@ -6,7 +6,7 @@ export default function generateBallHandle(position: Postion) {
         case "PG":
             return weightedRandomNumberGenerator(99, 70, 0.7);
         case "SG":
-            return weightedRandomNumberGenerator(95, 65, 0.7);
+            return weightedRandomNumberGenerator(95, 65, 0.75);
         case "SF":
             return weightedRandomNumberGenerator(93, 65, 0.75);
         case "PF":

@@ -1,13 +1,16 @@
 import { PlayerAttributes } from "../../interfaces/Attributes";
 import { Postion } from "../../interfaces/Player";
+import pfWeights from "./weights/pfWeights";
 import pgWeights from "./weights/pgWeights";
+import sfWeights from "./weights/sfWeights";
+import sgWeights from "./weights/sgWeights";
 
 export function generateOverall(position: Postion, categoryOveralls: PlayerAttributes) {
     const positionWeights: Record<Postion, PlayerAttributes> = {
         "PG": pgWeights,
-        "SG": pgWeights,
-        "SF": pgWeights,
-        "PF": pgWeights,
+        "SG": sgWeights,
+        "SF": sfWeights,
+        "PF": pfWeights,
         "C": pgWeights,
     };
 
