@@ -6,6 +6,6 @@ export interface StatObject {
 }
 
 interface StatAvg {
-    [season: number]: number,
+    [season: number]: { regularSeason: number, statLeader?: boolean },
     postseason: number
 }
