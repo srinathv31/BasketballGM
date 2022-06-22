@@ -29,7 +29,7 @@ export function generateDraftClass() {
 }
 
 function generateNewPlayer(listLength: number): PlayerObject {
-    const playerPosition: Postion[] = ["PF"];
+    const playerPosition: Postion[] = ["C"];
     const playerHeight = generateHeight(playerPosition[0]);
     const playerWeight = generateWeight(playerHeight);
     const playerRatings = generatePlayerRatings(playerHeight, playerPosition[0]);

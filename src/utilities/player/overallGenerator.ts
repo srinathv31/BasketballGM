@@ -1,5 +1,6 @@
 import { PlayerAttributes } from "../../interfaces/Attributes";
 import { Postion } from "../../interfaces/Player";
+import cWeights from "./weights/cWeights";
 import pfWeights from "./weights/pfWeights";
 import pgWeights from "./weights/pgWeights";
 import sfWeights from "./weights/sfWeights";
@@ -11,7 +12,7 @@ export function generateOverall(position: Postion, categoryOveralls: PlayerAttri
         "SG": sgWeights,
         "SF": sfWeights,
         "PF": pfWeights,
-        "C": pgWeights,
+        "C": cWeights,
     };
 
     let totalWeightedOverall = 0;
