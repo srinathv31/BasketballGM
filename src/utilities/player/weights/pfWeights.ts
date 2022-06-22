@@ -23,8 +23,8 @@ const pfWeights: PlayerAttributes = {
         freeThrow: 0.15,
         layup: 0.15,
         dunk: 0.15,
-        drawFoul: 0,
         postFade: 0.1,
+        drawFoul: 0,
         ballHandle: 0,
         passing: 0,
         categoryWeight: 0.6

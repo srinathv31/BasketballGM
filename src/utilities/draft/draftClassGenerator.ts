@@ -29,7 +29,7 @@ export function generateDraftClass() {
 }
 
 function generateNewPlayer(listLength: number): PlayerObject {
-    const playerPosition: Postion[] = ["PF"];
+    const playerPosition: Postion[] = ["PG"];
     const playerHeight = generateHeight(playerPosition[0]);
     const playerWeight = generateWeight(playerHeight);
     const playerRatings = generatePlayerRatings(playerHeight, playerPosition[0]);
@@ -100,7 +100,7 @@ function generatePlayerRatings(height: number, position: Postion) {
     const offensiveRatings = generateOffensiveRatings(position, height);
     const defensiveRatings = generateDefensiveRatings(height);
     const categoryOveralls = { overall: 70, physical: physicalRatings, mental: mentalRatings, offense: offensiveRatings, defense: defensiveRatings };
-    const overall = generateOverall("PG", categoryOveralls);
+    const overall = generateOverall(position, categoryOveralls);
     return { overall: overall, physicalRatings: physicalRatings, mentalRatings: mentalRatings, offensiveRatings: offensiveRatings, defensiveRatings: defensiveRatings };
 }
 
