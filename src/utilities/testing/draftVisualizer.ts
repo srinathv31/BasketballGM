@@ -1,4 +1,4 @@
-import { PlayerObject } from "../../interfaces/Player";
+import { PlayerObject, Postion } from "../../interfaces/Player";
 
 export function draftVisualizer(draftClass: PlayerObject[]) {
     const distributionCurve: Record<number, number> = {
@@ -23,6 +23,26 @@ export function draftVisualizer(draftClass: PlayerObject[]) {
     let distributionString = "";
     Object.keys(distributionCurve).forEach(bracket => {
         distributionString += `${bracket}: ${distributionCurve[+bracket]}\n`;
+    });
+    console.log(distributionString);
+}
+
+export function draftPostionVisualizer(draftClass: PlayerObject[]) {
+    const distributionCurve: Record<Postion, number> = {
+        "PG": 0,
+        "SG": 0,
+        "SF": 0,
+        "PF": 0,
+        "C": 0 
+    };
+
+    draftClass.forEach(player => {
+        distributionCurve[player.position[0]]++;
+    });
+
+    let distributionString = "";
+    Object.keys(distributionCurve).forEach(bracket => {
+        distributionString += `${bracket}: ${distributionCurve[bracket as Postion]}\n`;
     });
     console.log(distributionString);
 }
