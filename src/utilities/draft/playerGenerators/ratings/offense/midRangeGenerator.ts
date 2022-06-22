@@ -6,7 +6,7 @@ export default function generateMidRange(position: Postion) {
         case "PG":
         case "SG":
         case "SF":
-            return weightedRandomNumberGenerator(99, 35, 0.7);
+            return weightedRandomNumberGenerator(99, 35, 0.8);
         case "PF":
             return weightedRandomNumberGenerator(95, 35, 0.8);
         case "C":

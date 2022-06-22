@@ -29,7 +29,7 @@ export function generateDraftClass() {
 }
 
 function generateNewPlayer(listLength: number): PlayerObject {
-    const playerPosition: Postion[] = ["PG"];
+    const playerPosition: Postion[] = ["PF"];
     const playerHeight = generateHeight(playerPosition[0]);
     const playerWeight = generateWeight(playerHeight);
     const playerRatings = generatePlayerRatings(playerHeight, playerPosition[0]);
@@ -98,7 +98,7 @@ function generatePlayerRatings(height: number, position: Postion) {
     const physicalRatings = generatePhysicalRatings(position);
     const mentalRatings = generateMentalRatings();
     const offensiveRatings = generateOffensiveRatings(position, height);
-    const defensiveRatings = generateDefensiveRatings(height);
+    const defensiveRatings = generateDefensiveRatings(position, height);
     const categoryOveralls = { overall: 70, physical: physicalRatings, mental: mentalRatings, offense: offensiveRatings, defense: defensiveRatings };
     const overall = generateOverall(position, categoryOveralls);
     return { overall: overall, physicalRatings: physicalRatings, mentalRatings: mentalRatings, offensiveRatings: offensiveRatings, defensiveRatings: defensiveRatings };
@@ -139,12 +139,12 @@ function generateOffensiveRatings(position: Postion, height: number) {
     return offense;
 }
 
-function generateDefensiveRatings(height: number) {
+function generateDefensiveRatings(position: Postion, height: number) {
     const defense = {
         interiorDefense: height < 77 ? randomNumberGenerator(75, 35) : randomNumberGenerator(99, 50),
         perimeterDefense: height > 81 ? randomNumberGenerator(80, 35) : randomNumberGenerator(99, 50),
         block: generateBlockRating(height),
-        steal: randomNumberGenerator(99, 35),
+        steal: position === "SF" ? weightedRandomNumberGenerator(99, 45, 0.8) : randomNumberGenerator(99, 35),
         offensiveRebound: generateReboundRating(height),
         defensiveRebound: generateReboundRating(height)
     };
